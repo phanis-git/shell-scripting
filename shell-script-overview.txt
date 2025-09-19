@@ -1,0 +1,15 @@
+Why is scripting?
+Automation , Devops main goal is Speed and accuracy.
+
+In Automation also we get :
+speed,
+Accuracy , no human errors
+Consistency
+Scalabality - we can deal many servers at a time
+Documentation
+
+We cannot place scripts in laptop , because if laptop any damage we lose all the scripts
+We cannot place scripts in server , because if server crash we lose all the scripts
+So to avoid the above , we place those at repositories in git and github
+
+Before git and github we have centralized architecture but there are many disadvantages of centralized 
