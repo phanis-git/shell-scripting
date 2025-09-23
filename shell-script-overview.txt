@@ -12,4 +12,45 @@ We cannot place scripts in laptop , because if laptop any damage we lose all the
 We cannot place scripts in server , because if server crash we lose all the scripts
 So to avoid the above , we place those at repositories in git and github
 
-Before git and github we have centralized architecture but there are many disadvantages of centralized 
+Before git and github we have centralized architecture (SVN) SUB VERSION CONTROL but there are many disadvantages of centralized 
+All the developers should work on one place , if the central repo crash , there is no backup.
+
+
+Git:- Git is a concept . Git is decentralized in architecture
+For reducing the disadvantages in centralized architecture we have git
+In Git we have local repo and central repo 
+First we will write the code and we will push to local repo and then central repo
+So if central repo fails , we can take the local repo code and we can arrange the central repo
+If local repo fails, we can take code from central repo
+
+In Git we have staging area - local repo - central repo or Remote repo
+Github - It is open source
+Bitbucket
+Gitlab   
+These are Git implementations
+
+In Git first we need to create New repositories - It means creating a folder in github server
+Taking the created repo into laptops or local we need to clone by using git clone command
+git clone <repo-url>
+We can use gitbash for connecting to github servers
+
+Difference between Normal folder and Git repo
+Git repo contains .git folder and normal folder doesnot have .
+
+vscode -> workspace -> staging area -> commit to local repo -> central repo
+
+What is staging area ?
+It is a temporary area where we stage the required files for commit , still we have a chance to take back into workspace
+
+What is local commit ?
+commit into local repo nothing but laptop. 
+- commit time will be logged
+- who committed will be logged 
+- why committed will be logged
+
+Push to central repo or Remote repo ?
+push to central repo then others can just do git pull to take those changes.
+
+Difference between Git clone and git pull?
+Git clone is cloning the entire repo from scratch , here we will do only once at first time 
+Git pull is pulling the changes that are made . not all the code will clone only changes will get
