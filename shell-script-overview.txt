@@ -54,3 +54,11 @@ push to central repo then others can just do git pull to take those changes.
 Difference between Git clone and git pull?
 Git clone is cloning the entire repo from scratch , here we will do only once at first time 
 Git pull is pulling the changes that are made . not all the code will clone only changes will get
+
+
+
+
+#!/bin/bash   ---> shebang , it should be the first line in shell script file , it acts like interpreter to check
+the syntax of the script and execute them 
+
+shell script file extension is .sh
