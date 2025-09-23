@@ -2,6 +2,7 @@
 
 a=10
 b=20
-c=(($a+$b))
+c=$(($a+$b))
 
-echo $c
+echo "c value is $c"
+echo "c ${c}"
