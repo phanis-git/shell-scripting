@@ -62,3 +62,20 @@ Git pull is pulling the changes that are made . not all the code will clone only
 the syntax of the script and execute them 
 
 shell script file extension is .sh
+we can run the file with                 sh hello-world.sh
+
+
+
+# passing arguments to variables dynamically outside the scripts.
+person1=$1
+person2=$2
+
+
+# Here export is the keyword used to set the Environment variables
+Environment variables are holding the values until the process is alive , it is accessible for sub process also.
+We can access both inside and outside the shell
+export courseName="DevSecOps"
+
+
+
+
