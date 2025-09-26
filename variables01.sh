@@ -1,7 +1,7 @@
 #!/bin/bash
 
-person1=Phani
-person2=Kiran
+person1=$person1
+person2=$person2
 
 # conversation
 
