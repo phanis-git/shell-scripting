@@ -71,10 +71,36 @@ person1=$1
 person2=$2
 
 
+Environment variables:-
+------------------------
+
+temporary Environment varialbels:-
+---------------------------------
+
 # Here export is the keyword used to set the Environment variables
 Environment variables are holding the values until the process is alive , it is accessible for sub process also.
 We can access both inside and outside the shell
 export courseName="DevSecOps"
+
+
+Permanent Environment varialbels:-
+---------------------------------
+
+Here we have a file at root level
+.bashrc 
+
+with in the above file we need to add the variables with values and then we need to source it
+
+export courseNm="Shell scripting"
+source .bashrc
+Now to check with exit and with out exit it will override with the permanent value
+
+
+
+
+# Commands or Linux commands executing inside the shell script file
+fromDt=$(command)      ---- here fromDt is variable name ,
+                            command is linux commands and $ is used to assign the command output value to variable
 
 
 
