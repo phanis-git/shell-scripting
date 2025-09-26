@@ -1,5 +1,5 @@
 #!/bin/bash
 
-todayDttm=$(date +%Y)
+todayDttm=$(date +%d-%m-%Y %H:%M)
 
 echo "Present date and time: $todayDttm"
