@@ -11,6 +11,9 @@ echo "$0   this will give the executing script name"
 echo "current directory : $PWD"
 echo "current directory : $pwd"
 
-echo "current directory : $USER"
+echo "current USER : $USER"
 echo "home directory : $HOME"
+
+echo "Process instance id or PID for the running script: $$"
+
 
