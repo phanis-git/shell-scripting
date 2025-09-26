@@ -1,7 +1,7 @@
 #!/bin/bash
 
-person1=$person1
-person2=$person2
+person1=$1
+person2=$2
 
 # conversation
 
