@@ -8,4 +8,4 @@ startTime=$(date +%s)
 sleep 20
 endTime=$(date +%s)
 let totalTime=endTime-startTime
-echo "Total time :: $totalTime"
+echo "Total time :: $totalTime s"
