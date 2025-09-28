@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rootUserId=$(id -u)
 
 if [ $rootUserId -eq 0 ]; then
