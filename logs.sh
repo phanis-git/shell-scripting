@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RED="\e[32m"
+RED="\e[31m"
 isRootUser=$(id -u)
 if [ $isRootUser -eq 0 ]; then
     echo "Root user"
