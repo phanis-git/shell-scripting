@@ -6,7 +6,6 @@ NORMAL_COLOR="\e[0m"
 isRootUser=$(id -u)
 if [ $isRootUser -eq 0 ]; then
     echo "Root user"
-    exit 1
     else 
     echo -e "$RED Root user privelege is needed"
     exit 1
