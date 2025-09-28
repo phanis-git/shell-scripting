@@ -29,6 +29,7 @@
 
 rootUserId=$(id -u)
 if [ $rootUserId -eq 0 ]; then
+    echo "Yes you have root access"
     else 
     echo "Try with root access"
     exit 1
