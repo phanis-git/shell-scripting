@@ -37,6 +37,14 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
+dnf list installed nginx
+if [ $? -eq 0 ]; then
+    echo "Nginx already installed"
+    else 
+    dnf install nginx -y
+    validateInstalls $? "Nginx" 
+    exit 1
+fi
 
 
 
