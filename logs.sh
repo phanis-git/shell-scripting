@@ -25,7 +25,6 @@ if [ $? -eq 0 ]; then
     else 
     dnf install mysql-server -y
     validateInstalls $? "Mysql-server" 
-    exit 1
 fi
 
 dnf list installed mysql
@@ -34,7 +33,6 @@ if [ $? -eq 0 ]; then
     else 
     dnf install mysql -y
     validateInstalls $? "Mysql-client" 
-    exit 1
 fi
 
 dnf list installed nginx
@@ -43,7 +41,6 @@ if [ $? -eq 0 ]; then
     else 
     dnf install nginx -y
     validateInstalls $? "Nginx" 
-    exit 1
 fi
 
 
