@@ -21,7 +21,7 @@ validateInstalls(){
 # Installing mysql server and mysql client if not exist
 dnf list installed mysql-server
 if [ $? -eq 0 ]; then
-    echo "Mysql-server already installed"
+    echo -e "$GREEN Mysql-server already installed $NORMAL_COLOR"
     else 
     dnf install mysql-server -y
     validateInstalls $? "Mysql-server" 
@@ -29,7 +29,7 @@ fi
 
 dnf list installed mysql
 if [ $? -eq 0 ]; then
-    echo "Mysql-client already installed"
+    echo -e "$GREEN Mysql-client already installed $NORMAL_COLOR"
     else 
     dnf install mysql -y
     validateInstalls $? "Mysql-client" 
@@ -37,7 +37,7 @@ fi
 
 dnf list installed nginx
 if [ $? -eq 0 ]; then
-    echo "Nginx already installed"
+    echo "$GREEN Nginx already installed $NORMAL_COLOR"
     else 
     dnf install nginx -y
     validateInstalls $? "Nginx" 
