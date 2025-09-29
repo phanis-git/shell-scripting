@@ -32,9 +32,6 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
-
-
-
 validateInstalls(){
     if [ $1 -eq 0 ]; then
     echo "$2 is $GREEN installed successfully $NORMAL_COLOR"
