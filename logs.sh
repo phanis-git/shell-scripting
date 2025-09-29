@@ -37,7 +37,7 @@ fi
 
 dnf list installed nginx
 if [ $? -eq 0 ]; then
-    echo "$GREEN Nginx already installed $NORMAL_COLOR"
+    echo -e "$GREEN Nginx already installed $NORMAL_COLOR"
     else 
     dnf install nginx -y
     validateInstalls $? "Nginx" 
