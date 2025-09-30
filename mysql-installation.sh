@@ -28,7 +28,7 @@ NORMAL_COLOR="\e[0m"
 rootUserId=$(id -u)
 # checking root user or not
 if [ $rootUserId -ne 0 ]; then
-    echo -e "$RED Try with root user"
+    echo -e "$RED Try with root user $NORMAL_COLOR"
     exit 1
 fi
 
@@ -37,12 +37,12 @@ dnf list installed mysql-server
 if [ $? -ne 0 ]; then
     dnf install mysql-server -y
     if [ $? -ne 0 ]; then
-        echo "Mysql-server is failed install"
+        echo -e "$RED Mysql-server is failed install $NORMAL_COLOR"
         else
-        echo "Mysql-server is installed successfully"
+        echo "$GREEN Mysql-server is installed successfully $NORMAL_COLOR"
     fi
     else
-    echo "Mysql-server is already exist"
+    echo "$BLUE Mysql-server is already exist $NORMAL_COLOR"
     exit 1
 fi    
 
