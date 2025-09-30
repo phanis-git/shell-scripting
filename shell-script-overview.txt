@@ -103,5 +103,78 @@ fromDt=$(command)      ---- here fromDt is variable name ,
                             command is linux commands and $ is used to assign the command output value to variable
 
 
+ex: currentDt=$(date)
+we can pass the arguments kind for getting date as formatted 
+ex: currentDate=$(date +%F)
+    currentDate=$(date +%Y-%m-%d)
+
+
+Special variables
+-----------------
+$* , $@
+these are the special variables where we can pass the values dynamically while running the script ,
+these variables will hold the values
+Ex: sh hello-world.sh  phani kiran    // output :-   phani kiran
+
+$0  -----> It will give the script file name
+$PWD   ---> It will give the current working directory name
+$USER   ----> It will give the current user or who ever running the script there name
+$HOME   -----> It will give the home directory of current user
+$$   ----> Process Instance Id (PID) for the current extension script
+$!   ----> PID for last command in background
+ex:- sleep 10 &
+ps -ef | grep sleep
+
+
+
+Datatypes
+---------
+Everything in shell considered as string , but while using the priority changes and shell will understand what to do
+ex: num1=10
+    num2=30
+    sum=$(($num1+$num2))     // here the output is 30
+    name="Phani"
+    total=$(($num1+$num2+$name))     // here also it will give 30 and as it is string it consider as 0
+
+Array
+-----
+names=("Phani" "Kiran")
+${names[0]}   // accessing the 0 index value 
+${names[@]}  // accessing all the values 
+
+
+Conditions
+----------
+syntax: if [ Condition ]; then 
+        fi 
+
+syntax: if [ Condition ]; then 
+            //
+        else
+            //
+        fi
+
+syntax: if [ Condition ]; then 
+            //
+        elif [ Condition ]; then
+            //
+        else
+            //
+        fi
+
+-lt   ---> less than
+-gt   ----> greater than
+-eq   ---> equal to
+-ne  ----> not equal
+
+
+
+Exit status:-
+------------
+If something we did in command line and if we want to know the result of that command we use exit codes
+0 ----> success
+1 to 127  ----> failure
+
+
 
 
