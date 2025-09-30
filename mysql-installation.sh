@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Here i will keep all the variables and functions at top
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+PURPLE="\e[35m"
+CEON="\e[36m"
+WHITE="\e[37m"
+NORMAL_COLOR="\e[0m"
+
+
 
 # Before writing shell script first we need to note what are all the steps need to do
 
@@ -17,7 +28,7 @@
 rootUserId=$(id -u)
 # checking root user or not
 if [ $rootUserId -ne 0 ]; then
-    echo "Try with root user "
+    echo -e "$RED Try with root user"
     exit 1
 fi
 
