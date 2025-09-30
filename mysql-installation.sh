@@ -39,10 +39,10 @@ if [ $? -ne 0 ]; then
     if [ $? -ne 0 ]; then
         echo -e "$RED Mysql-server is failed install $NORMAL_COLOR"
         else
-        echo "$GREEN Mysql-server is installed successfully $NORMAL_COLOR"
+        echo -e "$GREEN Mysql-server is installed successfully $NORMAL_COLOR"
     fi
     else
-    echo "$BLUE Mysql-server is already exist $NORMAL_COLOR"
+    echo -e "$BLUE Mysql-server is already exist $NORMAL_COLOR"
     exit 1
 fi    
 
