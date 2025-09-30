@@ -29,6 +29,7 @@ if [ $? -ne 0 ]; then
         echo "Mysql-server is failed install"
         else
         echo "Mysql-server is installed successfully"
+    fi
     else
     echo "Mysql-server is already exist"
     exit 1
