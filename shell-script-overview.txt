@@ -178,3 +178,42 @@ If something we did in command line and if we want to know the result of that co
 
 
 
+functions:
+----------
+functions will take inputs as arguments and gives the output
+
+syntax:-
+
+validation(){
+
+}
+
+ex:- 
+validate(){
+    if [ $1 -ne 0 ]; then
+    //  echo "$2 installed successfully"
+    else
+    //
+    fi
+}
+
+validate $? "Mysql"  ----> calling functions
+
+
+
+
+Colors:
+-------
+
+echo -e "\e[31m RED color"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+PURPLE="\e[35m"
+CEON="\e[36m"
+WHITE="\e[37m"
+NORMAL_COLOR="\e[0m"
+echo -e "$GREEN GREEN color $NORMAL_COLOR"
+echo -e "$YELLOW Hello"
+
+-e means enabling interpretation of backslash escapes
