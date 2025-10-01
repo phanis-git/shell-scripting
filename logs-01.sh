@@ -22,7 +22,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 
 # folder & files creation in script
 scriptsFolder="/var/log/shell-script-logs"
-mkdir scriptsFolder
+mkdir $scriptsFolder
 scriptFileName=$(echo $0 | cut -d "." -f1 )
 echo "scriptname:: $scriptFileName"
 
