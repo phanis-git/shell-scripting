@@ -88,6 +88,7 @@ NORMAL_COLOR="\e[0m"
 # 5. Install mysql-server 
 # 6. Check if mysql-server is properly installed or not 
 # 7. If properly installed then notify user with success else failure
+# 8. Next same like Nginx
 
 # getting user id
 rootUserId=$(id -u)
