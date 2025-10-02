@@ -17,3 +17,12 @@ for item in "${allItems[@]}"
     echo "Number:: $num"
     num=$((num+1))
     done
+
+
+    # until
+    val=1
+    until [ $val -gt 5 ]
+    do
+        echo "value: $val"
+        val=$((val + 1))
+    done
