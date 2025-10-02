@@ -12,7 +12,7 @@ for item in "${allItems[@]}"
     # while loop
 
     num=1
-    while [$num -le 5 ];
+    while [ $num -le 5 ];
     do 
     echo "Number:: $num"
     $num=$(($num+1))
