@@ -15,5 +15,5 @@ for item in "${allItems[@]}"
     while [ $num -le 5 ];
     do 
     echo "Number:: $num"
-    $num=$(($num+1))
+    num=$((num+1))
     done
