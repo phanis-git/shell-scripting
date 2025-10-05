@@ -15,22 +15,26 @@ SG_ID="sg-0d61951953429eeed"
 
 
 # create instances dynamically
-for instance in $@
+for instance in "$@"
 do 
-# Creating instance and get instance id
-    INSTANCE_ID=$(aws ec2 run-instances
-    --image-id $AMI_ID
-    --instance-type t3.micro
-    --security-group-ids $SG_ID
-    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]"
-    --query 'Instances[0].InstanceId'
-    --output text)
+    # Creating instance and get instance id
+    INSTANCE_ID=$(aws ec2 run-instances \
+        --image-id "$AMI_ID" \
+        --instance-type t3.micro \
+        --security-group-ids "$SG_ID" \
+        --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
+        --query 'Instances[0].InstanceId' \
+        --output text)
 
-# Getting public/private ip based on instance - If frontend public ip else private ip
-    if [ $instance -eq 'frontend' ]; then
-    ID=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+    # Getting public/private IP based on instance type
+    if [ "$instance" == "frontend" ]; then
+        ID=$(aws ec2 describe-instances --instance-ids "$INSTANCE_ID" \
+            --query 'Reservations[0].Instances[0].PublicIpAddress' \
+            --output text)
     else 
-    ID=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
+        ID=$(aws ec2 describe-instances --instance-ids "$INSTANCE_ID" \
+            --query 'Reservations[0].Instances[0].PrivateIpAddress' \
+            --output text)
     fi
     
     echo "$instance :: $ID"
