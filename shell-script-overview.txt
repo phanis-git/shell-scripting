@@ -217,3 +217,101 @@ echo -e "$GREEN GREEN color $NORMAL_COLOR"
 echo -e "$YELLOW Hello"
 
 -e means enabling interpretation of backslash escapes
+
+
+
+Error Handling:
+---------------
+expected errors we can handle 
+unexpected errors we can not handle
+
+ex: dnf list installed mysql    // here if package not available it is getting error that we can handle
+    dnf install mysql -y        // here it is correct command , even it is if not installed it means    
+                                    there is some problem so we cannot handle and here we use logs for checking
+
+
+
+
+
+
+
+AWS CLI or AWS command line :-
+------------------------------
+steps:-
+While creating ec2 instance we entered
+Instance name
+security group
+Instance type : t2, t3
+AMI - Amazon machile image - in this ami id is there
+storage , cpu , ram
+key value 
+and Authentication 
+
+Manual way :
+------------
+upto to now we connected to instance by aws console , here we taken public ip of created ec2 instance and 
+in mobaxterm by using public ip and username and password we have connected
+
+Automated way : 
+--------------
+
+using a single command we can do the above steps
+here also Authentication is needed
+ex:-  aws create instance key="" sg-id="" instancetype="" storage=""
+
+So for connecting to ec2 instance there are many options like
+AWS CLI        // here AWS NATIVE CLI is the interface and it is developed by python
+Terraform    // here Provider.exe is the interface
+SDK (software development kit ) like java , nodejs , python etc   // here SDK is the interface 
+CloudFormation
+PULUMI
+
+
+
+
+
+
+
+
+Aws cli instance creation:
+
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --instance-type t2.micro \
+    --key-name MyKeyPair \
+    --security-group-ids sg-0123456789abcdef0 \
+    --subnet-id subnet-0fedcba9876543210 \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MyCLIInstance}]'
+
+
+
+
+aws ec2 run-instances \
+    --image-id ami-09c813fb71547fc4f \
+    --instance-type t3.micro \
+    --security-group-ids sg-06f01a6a1c028cd9e \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Frontend}]'
+
+    ami-09c813fb71547fc4f
+    sg-06f01a6a1c028cd9e
+
+    If we run this above full command in Mobaxterm cli , we can able to see the instance created 
+    and aws give the response in the console with full object created
+
+    check aws-response.text file 
+   1. From the output get the instanceId 
+   2. Query the instanceId to get public Ip
+
+   --query 'Instances[0].InstanceId' \
+    --output text
+
+Add the above 2 lines ,so it will  create instance and at same time it will give Public Ip as well 
+
+aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-06f01a6a1c028cd9e --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Frontend}]' --query 'Instances[0].InstanceId' --output text
+aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-07c8acf3fa6b923fa --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Test}]' --query 'Instances[0].InstanceId' --output text
+
+
+Getting public ip based on instanceId in aws
+aws ec2 describe-instances --instance-ids i-0a40b06c981cf1227 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+Getting private ip based on instanceId in aws
+aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-07c8acf3fa6b923fa --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Test}]' --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text
