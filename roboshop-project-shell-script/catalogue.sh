@@ -109,8 +109,15 @@ dnf install mongodb-mongosh -y &>>$logFileName
 VALIDATE $? "Installing mongodb client package or mongodb-mongosh"
 
 # Loading data into the db for sample purpose
-mongosh --host mongodb.devops-phani.fun </app/db/master-data.js &>>$logFileName
-VALIDATE $? "Loading catalogue products data to the db for sample purpose"
+# mongosh --host mongodb.devops-phani.fun </app/db/master-data.js &>>$logFileName
+# VALIDATE $? "Loading catalogue products data to the db for sample purpose"
+
+INDEX=$(mongosh mongodb.devops-phani.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+if [ $INDEX -le 0 ]; then
+    mongosh --host mongodb.devops-phani.fun </app/db/master-data.js &>>$logFileName
+else
+    echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
+fi
 
 # Restart catalogue service
 systemctl restart catalogue &>>$logFileName
