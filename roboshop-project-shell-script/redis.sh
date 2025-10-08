@@ -49,6 +49,7 @@ dnf install redis -y &>>$logFileName
 # echo "Changing protected-mode yes to no"
 # sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis/redis.conf &>>$logFileName
 
+# -e is for extra arguments
 sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
 
 # systemctl enable redis
