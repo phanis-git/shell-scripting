@@ -20,9 +20,9 @@
     # --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MyNewInstance}]' \
 
 AMI_ID="ami-09c813fb71547fc4f"
-SG_ID="sg-0d61951953429eeed"
+SG_ID="sg-01f9169658e1539df"
 HOSTED_ZONE_ID="Z06921933AGUP8YGI3FIB"
-DOMAIN_NAME="devops.phani.fun"
+DOMAIN_NAME="devops-phani.fun"
 # create instances dynamically
 for instance in "$@"
 do 
