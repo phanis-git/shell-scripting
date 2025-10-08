@@ -29,7 +29,7 @@ logFileName="$scriptsFolder/$scriptFileName.log"
 echo "logFileName :: $logFileName"
 
 # Installing mysql-server 
-dnf install mysql-server -y $>>$logFileName
+dnf install mysql-server -y &>>$logFileName
 VALIDATE $? "Mysql-server installed"
 
 # Enabling mysqld
