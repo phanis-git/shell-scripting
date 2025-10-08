@@ -22,7 +22,7 @@ fi
 
 
 logsFolder="/var/log/roboshop-project-logs"
-mkdir -p $scriptsFolder
+mkdir -p $logsFolder
 scriptFileName=$(echo $0 | cut -d "." -f1 )
 logFileName="$logsFolder/$scriptFileName.log"
 echo "Log file name :: $logFileName"
