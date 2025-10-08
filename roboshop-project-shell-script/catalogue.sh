@@ -62,7 +62,11 @@ VALIDATE $? "Downloading code"
 cd /app 
 VALIDATE $? "Moving to app directory"
 
-# Unzip the code folder
+# Removing the existing code for new code changes incoming
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
+# Unzip the code folder (as we run multiple times it will struck because there is already code present so 
+# above i am removing the code)
 unzip /tmp/catalogue.zip &>>$logFileName
 VALIDATE $? "Unzip the code folder"
 
