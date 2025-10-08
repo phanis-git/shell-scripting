@@ -5,7 +5,7 @@
 # It is known for ultra-fast performance due to its in-memory(stores in RAM) architecture. 
 # Uses a simple key-value model but supports complex data types.
 set -euo pipefail
-trap 'There is an error in line number :: $LINENO and the command is $BASH_COMMAND'
+trap 'There is an error in line number :: $LINENO and the command is $BASH_COMMAND' ERR
 
 USERID=$(id -u)
 R="\e[31m"
