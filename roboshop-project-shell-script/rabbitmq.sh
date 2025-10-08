@@ -42,11 +42,11 @@ dnf install rabbitmq-server -y &>>$logFileName
 VALIDATE $? "Installing rabbitmq-server"
 
 # Enabling rabbitmq-server 
-systemctl enable rabbitmq-server
+systemctl enable rabbitmq-server &>>$logFileName
 VALIDATE $? "Enabling rabbitmq-server"
 
 # Starting rabbitmq-server 
-systemctl start rabbitmq-server
+systemctl start rabbitmq-server &>>$logFileName
 VALIDATE $? "Started rabbitmq-server"
 
 # RabbitMQ comes with a default username / password as guest/guest. 
