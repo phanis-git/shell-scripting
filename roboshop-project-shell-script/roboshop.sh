@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# **** Before creating instances lets do configure 
+# Commands are
+# Command :-  aws configure 
+# Access key id of IAM user in aws
+# Security Id of IAM user in aws
+# Default region 
+# Command for checking aws configure is properly configured or not
+# aws s3 ls
+
 # creating ec2 instance by aws cli or command
     # aws ec2 run-instances \
     # --image-id ami-0abcdef1234567890 \
