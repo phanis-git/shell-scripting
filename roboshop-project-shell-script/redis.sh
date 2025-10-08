@@ -42,12 +42,14 @@ echo "Installing redis version 7"
 dnf install redis -y &>>$logFileName
 
 # Giving Remote access connections with 0.0.0.0 by changing the default port 127.0.0.1
-echo "Allowing remote connections from port 0.0.0.0"
-sed -i '127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>>$logFileName
+# echo "Allowing remote connections from port 0.0.0.0"
+# sed -i '127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>>$logFileName
 
 # Changing protected-mode yes to no
-echo "Changing protected-mode yes to no"
-sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis/redis.conf &>>$logFileName
+# echo "Changing protected-mode yes to no"
+# sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis/redis.conf &>>$logFileName
+
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
 
 # systemctl enable redis
 echo "Enabling Redis"
