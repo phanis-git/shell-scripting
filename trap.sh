@@ -7,3 +7,4 @@ trap 'echo "There is an error in line number :: $LINENO,and the command is: $BAS
 echo "Start"
 dsjif
 echo "End"
+# Check catalogue-set.sh we implemented the same instaed of validate functions
