@@ -42,7 +42,8 @@ dnf install nodejs -y &>>$logFileName
 VALIDATE $? "Installing nodejs version 20"
 
 # Adding application user by checking user exist or not
-if [ $(id -u roboshop) -ne 0 ]; then
+id roboshop
+if [ $? -ne 0 ]; then
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logFileName
 VALIDATE $? "Adding application user"
 else
@@ -50,7 +51,7 @@ echo -e "$Y Application User already exist $N" | tee -a $logFileName
 fi
 
 # Creating app directory
-mkdir /app 
+mkdir -p /app 
 VALIDATE $? "Creating app directory"
 
 # Download code to tmp directory
@@ -91,7 +92,7 @@ systemctl start catalogue &>>$logFileName
 VALIDATE $? "Start catalogue service"
 
 # Copying mongo.repo to /etc/yum.repos.d/mongo.repo
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$logFileName
+cp $PWD/mongo.repo /etc/yum.repos.d/mongo.repo &>>$logFileName
 VALIDATE $? "Copy and pasted the mongo repo content to /etc/yum.repos.d/mongo.repo"
 
 # Installing mongodb client for interacting app server and db server
