@@ -80,6 +80,7 @@ VALIDATE $? "Doing npm install"
 
 # Creating systemctl (here we taken a seperate file for creating - catalogue.service )by file
 # As we are in /app directory 
+echo " prwsent working dir :: $PWD"
 cp $PWD/catalogue.service /etc/systemd/system/catalogue.service &>>$logFileName
 VALIDATE $? "Copy and pasted the catalogue service file to /etc/systemd/system"
 
