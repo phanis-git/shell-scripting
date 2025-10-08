@@ -44,8 +44,13 @@ dnf install nodejs -y &>>$logFileName
 VALIDATE $? "Installing nodejs version 20"
 
 # Adding system user with no logins
+id roboshop
+if [ $? -ne 0 ]; then
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop   &>>$logFileName
 VALIDATE $? "Adding system user"
+else
+echo -e "$Y Application User already exist $N" | tee -a $logFileName
+fi
 
 # Creating app directory
 mkdir -p /app  &>>$logFileName
@@ -58,6 +63,9 @@ VALIDATE $? "Downloading the code to /tmp folder"
 # Moving to /app folder
 cd /app &>>$logFileName
 VALIDATE $? "Moving to /app folder"
+
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
 
 # Unzip the /tmp/user.zip
 unzip /tmp/cart.zip  &>>$logFileName

@@ -52,8 +52,13 @@ VALIDATE $? "Started rabbitmq-server"
 # RabbitMQ comes with a default username / password as guest/guest. 
 # But this user cannot be used to connect. Hence, we need to create one user for the application.
 # Adding roboshop user
+id roboshop
+if [ $? -ne 0 ]; then
 rabbitmqctl add_user roboshop roboshop123 &>>$logFileName
 VALIDATE $? "Adding application user"
+else
+echo -e "$Y Application User already exist $N" | tee -a $logFileName
+fi
 
 # Setting permissions
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$logFileName
