@@ -26,7 +26,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 
 # folder & files creation in script
 scriptsFolder="/var/log/roboshop-project-logs"
-mkdir $scriptsFolder
+mkdir -p $scriptsFolder
 scriptFileName=$(echo $0 | cut -d "." -f1 )
 echo "scriptname:: $scriptFileName"
 logFileName="$scriptsFolder/$scriptFileName.log"
