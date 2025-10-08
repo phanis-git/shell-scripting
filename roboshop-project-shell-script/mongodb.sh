@@ -30,7 +30,7 @@ echo "logFileName :: $logFileName"
 
 
 # keeping mongo repo for installation purpose
-cp mongo.repo vim /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Adding mongo repo"
 
 dnf install mongodb-org -y &>>$logFileName
