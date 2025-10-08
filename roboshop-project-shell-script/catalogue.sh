@@ -69,8 +69,9 @@ VALIDATE $? "Moving to app directory for installing packages"
 npm install &>>$logFileName
 VALIDATE $? "Doing npm install"
 
-# Creating systemctl by file
-cp catalogue.service /etc/systemd/system/catalogue.service &>>$logFileName
+# Creating systemctl (here we taken a seperate file for creating - catalogue.service )by file
+# As we are in /app directory 
+cp $PWD/catalogue.service /etc/systemd/system/catalogue.service &>>$logFileName
 VALIDATE $? "Copy and pasted the catalogue service file to /etc/systemd/system"
 
 # Daemon reload
