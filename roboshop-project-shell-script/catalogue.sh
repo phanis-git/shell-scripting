@@ -6,6 +6,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+SCRIPT_DIR=$PWD
+
 if [ $USERID -ne 0 ]; then
     echo "ERROR:: Please run this script with root privelege" | tee -a $logFileName
     exit 1 # failure is other than 0
@@ -80,8 +82,8 @@ VALIDATE $? "Doing npm install"
 
 # Creating systemctl (here we taken a seperate file for creating - catalogue.service )by file
 # As we are in /app directory 
-echo " prwsent working dir :: $PWD"
-cp $PWD/catalogue.service /etc/systemd/system/catalogue.service &>>$logFileName
+echo " prwsent working dir :: $SCRIPT_DIR"
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>>$logFileName
 VALIDATE $? "Copy and pasted the catalogue service file to /etc/systemd/system"
 
 # Daemon reload
@@ -97,7 +99,7 @@ systemctl start catalogue &>>$logFileName
 VALIDATE $? "Start catalogue service"
 
 # Copying mongo.repo to /etc/yum.repos.d/mongo.repo
-cp $PWD/mongo.repo /etc/yum.repos.d/mongo.repo &>>$logFileName
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo &>>$logFileName
 VALIDATE $? "Copy and pasted the mongo repo content to /etc/yum.repos.d/mongo.repo"
 
 # Installing mongodb client for interacting app server and db server
