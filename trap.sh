@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-trap 'There is an error in line : $LINENO and Command is $BASH_COMMAND' ERR
+trap 'echo "There is an error in $LINENO, Command is: $BASH_COMMAND"' ERR
 
 echo "Start"
 dsjif
