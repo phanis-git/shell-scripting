@@ -30,19 +30,19 @@ echo "logFileName :: $logFileName"
 
 
 # Disable default nodejs
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$logFileName
 VALIDATE $? "Disabling default nodejs"
 
 # Enable required nodejs version here 20
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$logFileName
 VALIDATE $? "Enabling nodejs version 20"
 
 # Installing version 20 nodejs
-dnf install nodejs -y
+dnf install nodejs -y &>>$logFileName
 VALIDATE $? "Installing nodejs version 20"
 
 # Adding application user
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logFileName
 VALIDATE $? "Adding application user"
 
 # Creating app directory
@@ -50,7 +50,7 @@ mkdir /app
 VALIDATE $? "Creating app directory"
 
 # Download code to tmp directory
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$logFileName
 VALIDATE $? "Downloading code"
 
 # Moving to app directory
@@ -58,7 +58,7 @@ cd /app
 VALIDATE $? "Moving to app directory"
 
 # Unzip the code folder
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>>$logFileName
 VALIDATE $? "Unzip the code folder"
 
 # Moving to app directory for installing packages
@@ -66,35 +66,39 @@ cd /app
 VALIDATE $? "Moving to app directory for installing packages"
 
 # Doing npm install
-npm install 
+npm install &>>$logFileName
 VALIDATE $? "Doing npm install"
 
 # Creating systemctl by file
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp catalogue.service /etc/systemd/system/catalogue.service &>>$logFileName
 VALIDATE $? "Copy and pasted the catalogue service file to /etc/systemd/system"
 
 # Daemon reload
-systemctl daemon-reload
+systemctl daemon-reload &>>$logFileName
 VALIDATE $? "Daemon reload"
 
 # Enable catalogue service
-systemctl enable catalogue
+systemctl enable catalogue &>>$logFileName
 VALIDATE $? "Enable catalogue service"
 
 # Start catalogue service
-systemctl start catalogue
+systemctl start catalogue &>>$logFileName
 VALIDATE $? "Start catalogue service"
 
 # Copying mongo.repo to /etc/yum.repos.d/mongo.repo
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$logFileName
 VALIDATE $? "Copy and pasted the mongo repo content to /etc/yum.repos.d/mongo.repo"
 
 # Installing mongodb client for interacting app server and db server
 # Here mongodb-mongosh is the client package for mongodb
 # *** Before installing the repo should be there in the server
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$logFileName
 VALIDATE $? "Installing mongodb client package or mongodb-mongosh"
 
 # Loading data into the db for sample purpose
-mongosh --host mongodb.devops-phani.fun </app/db/master-data.js
-VALIDATE $? "Loading data to the db for sample purpose"
+mongosh --host mongodb.devops-phani.fun </app/db/master-data.js &>>$logFileName
+VALIDATE $? "Loading catalogue products data to the db for sample purpose"
+
+# Restart catalogue service
+systemctl restart catalogue &>>$logFileName
+VALIDATE $? "Restart catalogue service"
