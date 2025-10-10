@@ -48,7 +48,12 @@ GET_FILES=$(find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS)
 # condition (some times there are no files inside source folder) 
 while IFS= read -r file 
 do 
-    if [ ! -z "$file" ]; then
+    # if [ ! -z "$file" ]; then
+    # echo "Files found and started zipping :: $file"
+    # else
+    # echo "Files not found"
+    # fi
+      if [ -n "$file" ]; then
     echo "Files found and started zipping :: $file"
     else
     echo "Files not found"
