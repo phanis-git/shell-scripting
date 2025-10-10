@@ -4,7 +4,7 @@
 
 source_directory="/home/ec2-user/app-logs"
 
-LogFiles=$(find $source_directory -type f -size -2k -name "*.log")
+LogFiles=$(find $source_directory -type f -size +2k )
 
 while IFS= read -r file
 do 
