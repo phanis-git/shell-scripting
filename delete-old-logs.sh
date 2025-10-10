@@ -1,26 +1,53 @@
 #!/bin/bash
 
 R="\e[31m"
-R="\e[32m"
-R="\e[33m"
-R="\e[34m"
-R="\e[35m"
+G="\e[32m"
+Y="\e[33m"
+B="\e[34m"
+P="\e[35m"
+C="\e[36m"
 N="\e[0m"
 
+# folder & files creation in script
+SCRIPTS_FOLDER="/var/log/shell-script-logs"
+mkdir -P $SCRIPTS_FOLDER
+SCRIPT_FILE_NAME=$(echo $0 | cut -d "." -f1 )
+LOG_FILE_NAME="$SCRIPTS_FOLDER/$SCRIPT_FILE_NAME.log"
+echo "LOG FILE NAME :: $LOG_FILE_NAME"
 
 # Deleting logs by archieve them
 SOURCE_DIRECTORY=$1
 DESTINATION_DIRECTORY=$2
 DAYS=${3:-14}
 
-# Check source and destination directories present or not
-if [! -d $SOURCE_DIRECTORY ]; then
-    echo "Source directory :: $SOURCE_DIRECTORY is not found"
-    exit 1
-fi
-if [ ! -d $DESTINATION_DIRECTORY ]; then
-    echo "Destination directory :: $SOURCE_DIRECTORY is not found"
+# check user has root access or not
+ROOT_USER=$(id -u)
+if [ $ROOT_USER -ne 0 ]; then
+    echo -e "$R Root user privilege is needed $N" | tee -a $LOG_FILE_NAME
     exit 1
 fi
 
-getFiles=$(find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS)
+# Checking arguments - source and destination path are present in run time shell command 
+if [ $# -lt 2 ]; then
+    echo -e "$R find <source_path> <destination_path> <days>[optional , if we give days it will take else default it took 14 days older] $N" | tee -a $LOG_FILE_NAME
+    exit 1
+fi
+
+# Check source and destination directories present or not
+if [ ! -d $SOURCE_DIRECTORY ]; then
+    echo -e "$R Source directory :: $SOURCE_DIRECTORY is not found $N" | tee -a $LOG_FILE_NAME
+    exit 1
+fi
+if [ ! -d $DESTINATION_DIRECTORY ]; then
+    echo -e "$R Destination directory :: $SOURCE_DIRECTORY is not found $N" | tee -a $LOG_FILE_NAME
+    exit 1
+fi
+
+# Getting files by filtering with .log extension and type is file and respective days
+GET_FILES=$(find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS)
+# condition (some times there are no files inside source folder) 
+if [ ! -z "$GET_FILES" ]; then
+    echo "Files found and started zipping"
+else
+    echo "Files not found"
+fi
