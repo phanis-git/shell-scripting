@@ -1,12 +1,26 @@
 #!/bin/bash
 
-# Deleting logs
+R="\e[31m"
+R="\e[32m"
+R="\e[33m"
+R="\e[34m"
+R="\e[35m"
+N="\e[0m"
 
-source_directory="/home/ec2-user/app-logs"
 
-LogFiles=$(find $source_directory -type f -size -2k -name "*.log")
+# Deleting logs by archieve them
+SOURCE_DIRECTORY=$1
+DESTINATION_DIRECTORY=$2
+DAYS=${3:-14}
 
-while IFS= read -r file
-do 
-    echo "Log files less than 2kb :: $file"
-done <<< $LogFiles
+# Check source and destination directories present or not
+if [! -d $SOURCE_DIRECTORY ]; then
+    echo "Source directory :: $SOURCE_DIRECTORY is not found"
+    exit 1
+fi
+if [ ! -d $DESTINATION_DIRECTORY ]; then
+    echo "Destination directory :: $SOURCE_DIRECTORY is not found"
+    exit 1
+fi
+
+getFiles=$(find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS)
