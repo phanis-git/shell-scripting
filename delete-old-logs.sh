@@ -10,7 +10,7 @@ N="\e[0m"
 
 # folder & files creation in script
 SCRIPTS_FOLDER="/var/log/shell-script-logs"
-mkdir -P $SCRIPTS_FOLDER
+mkdir -p $SCRIPTS_FOLDER
 SCRIPT_FILE_NAME=$(echo $0 | cut -d "." -f1 )
 LOG_FILE_NAME="$SCRIPTS_FOLDER/$SCRIPT_FILE_NAME.log"
 echo "LOG FILE NAME :: $LOG_FILE_NAME"
