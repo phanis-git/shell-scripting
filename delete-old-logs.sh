@@ -79,6 +79,11 @@ do
     # Checking the files zipped or not
     if [ -f $MODIFIED_ZIP_FILE_NAME]; then
         echo "$MODIFIED_ZIP_FILE_NAME Successfully archieved"
+        while IFS= read -r deletingFile
+        do 
+            echo "$deletingFile Deleting..."
+            rm -rf $deletingFile
+        done <<< $MODIFIED_ZIP_FILE_NAME
         else
         echo "$MODIFIED_ZIP_FILE_NAME Archieve failed"
         exit 1
