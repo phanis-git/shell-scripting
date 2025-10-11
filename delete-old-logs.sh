@@ -59,9 +59,8 @@ do
     # or
 
     if [ -n "$file" ]; then
-    echo "Files found and started zipping :: $file"
-    TIMESTAMP=$(date +"%F %H:%M:%S")
-    ZIP_FILE_NAME="$DESTINATION_DIRECTORY/application-logs-$TIMESTAMP.zip"
+    TIMESTAMP=$(date +"%F-%H:%M:%S")
+    ZIP_FILE_NAME="$file-$TIMESTAMP.zip"
     echo "Zip file name :: $ZIP_FILE_NAME"
     else
     echo "Files not found"
