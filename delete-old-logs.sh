@@ -71,7 +71,8 @@ do
 
     if [ -n "$file" ]; then
     TIMESTAMP=$(date +"%F %H:%M:%S")
-    ZIP_FILE_NAME="$DESTINATION_DIRECTORYapp-logs-$TIMESTAMP.zip"
+    DESTINATION_DIRECTORY="${DESTINATION_DIRECTORY%/}"
+    ZIP_FILE_NAME="$DESTINATION_DIRECTORY/app-logs-$TIMESTAMP.zip"
     # Zipping the files
     find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS | zip -@ -j "$ZIP_FILE_NAME"
     # Checking the files zipped or not
