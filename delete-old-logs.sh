@@ -76,17 +76,18 @@ do
     # Zipping the files
     find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS | zip -@ -j "$ZIP_FILE_NAME"
     # Checking the files zipped or not
-    if [ -f $ZIP_FILE_NAME ]; then
-        echo "$ZIP_FILE_NAME Successfully archieved"
-        # while IFS= read -r deletingFile
-        # do 
-        #     echo "$deletingFile Deleting..."
-        #     rm -rf $deletingFile
-        # done <<< $MODIFIED_ZIP_FILE_NAME
-        else
-        echo "$ZIP_FILE_NAME Archieve failed"
-        exit 1
-    fi
+    echo "$ZIP_FILE_NAME"
+    # if [ -f $ZIP_FILE_NAME ]; then
+    #     echo "$ZIP_FILE_NAME Successfully archieved"
+    #     # while IFS= read -r deletingFile
+    #     # do 
+    #     #     echo "$deletingFile Deleting..."
+    #     #     rm -rf $deletingFile
+    #     # done <<< $MODIFIED_ZIP_FILE_NAME
+    #     else
+    #     echo "$ZIP_FILE_NAME Archieve failed"
+    #     exit 1
+    # fi
     else
     echo "Files not found"
     fi
