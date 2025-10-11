@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Delete old logs by doing backup or archieve them
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -53,8 +55,14 @@ do
     # else
     # echo "Files not found"
     # fi
-      if [ -n "$file" ]; then
+
+    # or
+
+    if [ -n "$file" ]; then
     echo "Files found and started zipping :: $file"
+    TIMESTAMP=$(date +"%F %H:%M:%S")
+    ZIP_FILE_NAME="$DESTINATION_DIRECTORY/application-logs-$TIMESTAMP.zip"
+    echo "Zip file name :: $ZIP_FILE_NAME"
     else
     echo "Files not found"
     fi
