@@ -59,9 +59,10 @@ do
     # or
 
     if [ -n "$file" ]; then
-    TIMESTAMP=$(date +"%F-%H:%M:%S")
+    TIMESTAMP=$(date +"%F %H:%M:%S")
     ZIP_FILE_NAME="$file-$TIMESTAMP.zip"
-    echo "Zip file name :: $ZIP_FILE_NAME"
+    MODIFIED_ZIP_FILE_NAME=$(basename "$ZIP_FILE_NAME")
+    echo "Zip file name :: $MODIFIED_ZIP_FILE_NAME"
     else
     echo "Files not found"
     fi
