@@ -45,6 +45,17 @@ if [ ! -d $DESTINATION_DIRECTORY ]; then
     exit 1
 fi
 
+# Checking & Installing zip 
+dnf list installed zip
+if [ $? -ne 0 ]; then
+    dnf install zip -y
+    if [ $? -ne 0 ]; then 
+    echo "Zip installation Failure"
+    else
+    echo "Zip installed Success"
+    fi
+fi
+
 # Getting files by filtering with .log extension and type is file and respective days
 GET_FILES=$(find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS)
 # condition (some times there are no files inside source folder) 
@@ -63,6 +74,15 @@ do
     ZIP_FILE_NAME="$file-$TIMESTAMP.zip"
     MODIFIED_ZIP_FILE_NAME=$(basename "$ZIP_FILE_NAME")
     echo "Zip file name :: $MODIFIED_ZIP_FILE_NAME"
+    # Zipping the files
+    find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS | zip -@ -j "$MODIFIED_ZIP_FILE_NAME"
+    # Checking the files zipped or not
+    if [ -f $MODIFIED_ZIP_FILE_NAME]; then
+        echo "$MODIFIED_ZIP_FILE_NAME Successfully archieved"
+        else
+        echo "$MODIFIED_ZIP_FILE_NAME Archieve failed"
+        exit 1
+    fi
     else
     echo "Files not found"
     fi
