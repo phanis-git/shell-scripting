@@ -77,6 +77,20 @@ do
     find $SOURCE_DIRECTORY -name "*.log" -type f -mtime +$DAYS | zip -@ -j "$ZIP_FILE_NAME"
     # Checking the files zipped or not
     echo "$ZIP_FILE_NAME"
+    if [ -f $ZIP_FILE_NAME ]
+        then
+         echo "$ZIP_FILE_NAME Successfully archieved"
+        #  Deleting
+          while IFS= read -r deletingFile
+          do 
+            echo "Deleting the file $deletingFile"
+          done <<< $file
+    else
+        echo "$ZIP_FILE_NAME Archieve failed"
+        exit 1
+    fi
+    # if successfully need to delete ---->  pending
+
     # if [ -f $ZIP_FILE_NAME ]; then
     #     echo "$ZIP_FILE_NAME Successfully archieved"
     #     # while IFS= read -r deletingFile
@@ -91,25 +105,5 @@ do
     else
     echo "Files not found"
     fi
-
-
-
-
-#     if [ -n "$GET_FILES" ]; then
-#     TIMESTAMP=$(date +"%F %H-%M-%S")
-#     ZIP_FILE_NAME="logs-$TIMESTAMP.zip"
-#     zip -j "$DESTINATION_DIRECTORY/$ZIP_FILE_NAME" $GET_FILES
-
-#     if [ $? -eq 0 ]; then
-#         echo -e "$G Logs successfully archived to $DESTINATION_DIRECTORY/$ZIP_FILE_NAME $N" | tee -a $LOG_FILE_NAME
-#         # Delete only after successful archive
-#         echo "$GET_FILES" | xargs rm -f
-#     else
-#         echo -e "$R Archiving failed! $N" | tee -a $LOG_FILE_NAME
-#         exit 1
-#     fi
-# else
-#     echo -e "$Y No log files older than $DAYS days found in $SOURCE_DIRECTORY $N" | tee -a $LOG_FILE_NAME
-# fi
 
 done <<< $GET_FILES
