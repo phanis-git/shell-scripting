@@ -68,7 +68,6 @@ do
     # fi
 
     # or
-
     if [ -n "$file" ]; then
     TIMESTAMP=$(date +"%F %H:%M:%S")
     DESTINATION_DIRECTORY="${DESTINATION_DIRECTORY%/}"
@@ -89,19 +88,6 @@ do
         echo "$ZIP_FILE_NAME Archieve failed"
         exit 1
     fi
-    # if successfully need to delete ---->  pending
-
-    # if [ -f $ZIP_FILE_NAME ]; then
-    #     echo "$ZIP_FILE_NAME Successfully archieved"
-    #     # while IFS= read -r deletingFile
-    #     # do 
-    #     #     echo "$deletingFile Deleting..."
-    #     #     rm -rf $deletingFile
-    #     # done <<< $MODIFIED_ZIP_FILE_NAME
-    #     else
-    #     echo "$ZIP_FILE_NAME Archieve failed"
-    #     exit 1
-    # fi
     else
     echo "Files not found"
     fi
