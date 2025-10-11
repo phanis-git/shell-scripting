@@ -83,7 +83,7 @@ do
         #     rm -rf $deletingFile
         # done <<< $MODIFIED_ZIP_FILE_NAME
         else
-        echo "$MODIFIED_ZIP_FILE_NAME Archieve failed"
+        echo "$ZIP_FILE_NAME Archieve failed"
         exit 1
     fi
     else
