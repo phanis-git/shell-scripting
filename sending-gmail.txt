@@ -40,3 +40,6 @@ echo "Content-Type: text/html"
 echo ""
 echo "$EMAIL_BODY"
 } | msmtp "$TO_ADDRESS"
+
+
+
